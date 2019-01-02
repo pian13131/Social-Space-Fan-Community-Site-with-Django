@@ -30,16 +30,16 @@
 			<ul class="nav navbar-nav navbar-right">
 				{% if user.is_authenticated %}
 				<li>
-					<a class="nav-link" href=""><span class="fas fa-plus"></span></a>
+					<a class="nav-link" href="{% url 'posts:create' %}"><span class="fas fa-plus"></span></a>
 				</li>
 				<li>
-					<a class="nav-link" href="">Groups</a>
+					<a class="nav-link" href="{% url 'groups:all' %}">Groups</a>
+				</li> 
+				<li>
+					<a class="nav-link" href="{% url 'groups:create' %}">Create Group</a>
 				</li>
 				<li>
-					<a class="nav-link" href="">Create Group</a>
-				</li>
-				<li>
-					<a class="nav-link" href="{% url 'logout' %}"><span class="fas fa-sign-out-alt"></span></a>
+					<a class="nav-link" href="{% url 'accounts:logout' %}"><span class="fas fa-sign-out-alt"></span></a>
 				</li>
 				{% else %}
 				<li><a class='nav navbar-right nav-link' href="{% url 'accounts:login' %}" >Log In</a></li>

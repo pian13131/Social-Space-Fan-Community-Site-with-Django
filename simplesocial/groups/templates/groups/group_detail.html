@@ -1,35 +1,40 @@
+
 {% extends "groups/group_base.html" %}
+
 {% block pregroup %}
 
-<h3>{{ group.name }}</h3>
-<h4>Member Count: {{ group.members.count }}</h4>
-<div>
-	{% if user in group.member.all %}
-		<a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-primary">
-			<span class="far fa-trash-alt"></span>Leave
-		</a>
+
+<h1>{{group.name}}</h1>
+<h2> Member Count: {{group.members.count}}</h2>
+
+  <div class="content">
+
+
+	{% if user in group.members.all %}
+		<a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-fill btn-warning"><span class="far fa-trash-alt"></span> Leave</a>
 	{% else %}
-		<a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-primary">
-			<span class="far fa-trash-alt"></span>Join
-		</a>
+		<a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-fill btn-warning"><span class="far fa-trash-alt"></span> Join</a>
 	{% endif %}
+
+
+
 </div>
-{% endblock pregroup %}
+
+{% endblock %}
+
 
 {% block group_content %}
+
 <div class="col-md-8">
-	{% if group.post.count == 0 %}
-		<h3>No posts in this group yet!</h3>
+	{% if group.posts.count == 0 %}
+	<h2>No posts in this group yet!</h2>
+
 	{% else %}
+
 		{% for post in group.posts.all %}
 			{% include "posts/_post.html" %}
 		{% endfor %}
+
 	{% endif %}
 </div>
-
-	
-{% endblock group_content %}
-
-{% block postgroup %}
-	
-{% endblock postgroup %}
+{% endblock %}
